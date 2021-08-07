@@ -1,14 +1,12 @@
 import React from "react";
 import Title from "../Title";
-import { Card, Container } from "./styles";
+import { Card } from "./styles";
 
 const CardBasis = ({ titleSize, title, children }) => (
-  <Container>
-    <Card>
-      <Title as={titleSize}>{title}</Title>
-      {children}
-    </Card>
-  </Container>
+  <Card>
+    <Title as={titleSize}>{title}</Title>
+    {children}
+  </Card>
 );
 
 export default CardBasis;
