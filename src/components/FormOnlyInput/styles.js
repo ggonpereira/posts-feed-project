@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import colors from "../../styles/variables";
+import BaseStyle from "../../styles/SharedStylesInputPlaceholder";
 
-export const InputContainer = styled.form`
+export const FormContainer = styled.form`
   margin-top: 20px;
 `;
 
@@ -11,18 +12,7 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 100%;
-  height: 30px;
-  background-color: ${colors.white};
-  border: 1px solid ${colors.darkGray};
-  font-size: 14px;
-  padding: 7px;
-  border-radius: 4px;
-  margin: 10px 0 20px 0;
-
-  &::placeholder {
-    color: ${colors.secondaryGray};
-  }
+  ${BaseStyle};
 `;
 
 export const Button = styled.button`

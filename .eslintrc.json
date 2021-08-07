@@ -24,10 +24,11 @@
                 "extensions": [".js", ".jsx"]
             }
         ],
-        "object-curly-newline": ["error", {"multiline": true}],
+        "object-curly-newline": "off",
         "react/prop-types": ["off"],
         "quotes": ["error", "double"],
         "no-console": "off",
+        "operator-linebreak": "off",
         "jsx-quotes": ["error", "prefer-double"],
         "comma-dangle": [2, "always-multiline"],
         "global-require": "off",

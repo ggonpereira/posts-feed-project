@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import Container from "../../components/Container";
+import MainContainer from "../../components/MainContainer";
 
-const HomeContainer = styled(Container)`
+const HomeContainer = styled(MainContainer)`
   display: grid;
   place-items: center;
+  height: 100vh;
 `;
 
 export default HomeContainer;

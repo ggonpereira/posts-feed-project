@@ -25,7 +25,7 @@ const Home = () => {
     setUsername(target.value);
   }
 
-  function saveUsername() {
+  function handleSaveUsername() {
     localStorage.setItem(
       "@CodeLeap:userData",
       JSON.stringify([
@@ -38,14 +38,18 @@ const Home = () => {
   }
 
   return (
-    <HomeContainer>
-      <CardBasis titleSize="h3" title="Welcome to CodeLeap network!">
+    <HomeContainer as="main">
+      <CardBasis
+        borderColor="#CCCCCC"
+        titleSize="h3"
+        title="Welcome to CodeLeap network!"
+      >
         <FormOnlyInput
           label="Please enter your username"
           placeholder="John Doe"
           buttonText="Enter"
           onChangeFunc={onUsernameChange}
-          onButtonClick={saveUsername}
+          onButtonClick={handleSaveUsername}
           disabled={username === "" && true}
         />
       </CardBasis>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input, InputContainer, Label } from "./styles";
+import { Button, Input, FormContainer, Label } from "./styles";
 
 const handleFormSubmit = (evt) => {
   evt.preventDefault();
@@ -13,13 +13,17 @@ const FormOnlyInput = ({
   onButtonClick,
   disabled,
 }) => (
-  <InputContainer onSubmit={handleFormSubmit}>
+  <FormContainer onSubmit={handleFormSubmit}>
     <Label>{label}</Label>
-    <Input onChange={onChangeFunc} placeholder={placeholder} type="text" />
+    <Input
+      onChange={onChangeFunc}
+      placeholder={placeholder || "John Doe"}
+      type="text"
+    />
     <Button disabled={disabled} type="submit" onClick={onButtonClick}>
       {buttonText}
     </Button>
-  </InputContainer>
+  </FormContainer>
 );
 
 export default FormOnlyInput;
