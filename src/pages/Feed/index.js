@@ -15,6 +15,8 @@ import Title from "../../components/Title";
 import FormInputTextarea from "../../components/FormInputTextarea";
 import CardBasis from "../../components/CardBasis";
 import Post from "../../components/Post";
+import Modal from "../../components/Modal";
+import { ModalButton } from "../../components/Modal/styles";
 
 const MySwal = withReactContent(Swal);
 
@@ -22,6 +24,7 @@ const Feed = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [noOfElements, setNoOfElements] = useState(6);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [posts, setPosts] = useState(() => {
     // Instead of using a useEffect, this will automatically set the saved posts into the state
     const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
@@ -111,14 +114,19 @@ const Feed = () => {
     });
   });
 
+  const openModal = () => {
+    setIsModalOpen((prevValue) => !prevValue);
+  };
+
   return (
     <MainContainer>
+      <Modal showModal={isModalOpen} setShowModal={setIsModalOpen} />
       <FeedContainer>
-        {/* Devo fazer um useEffect q verifica se o usuario já existe (com base no localStorage) */}
-        {/* e aí sim mostrar o form abaixo */}
         <FeedHeader>
+          <ModalButton onClick={openModal}>Olá</ModalButton>
           <Title color="#ffffff">CodeLeap Network</Title>
         </FeedHeader>
+
         <FeedContent>
           {userLoggedIn ? (
             <CardBasis
