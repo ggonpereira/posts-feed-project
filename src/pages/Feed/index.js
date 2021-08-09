@@ -46,23 +46,15 @@ const Feed = () => {
     localStorage.getItem("@CodeLeap:userData"),
   )?.[0]?.id;
 
-  function onTitleChange({ target }) {
-    setTitle(target.value);
-  }
+  const onTitleChange = ({ target }) => setTitle(target.value);
 
-  function onEditedTitleChange({ target }) {
-    setEditedTitle(target.value);
-  }
+  const onEditedTitleChange = ({ target }) => setEditedTitle(target.value);
 
-  function onContentChange({ target }) {
-    setContent(target.value);
-  }
+  const onContentChange = ({ target }) => setContent(target.value);
 
-  function onEditedContentChange({ target }) {
-    setEditedContent(target.value);
-  }
+  const onEditedContentChange = ({ target }) => setEditedContent(target.value);
 
-  function handleSavePost() {
+  const handleSavePost = () => {
     const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
 
     const newPost = {
@@ -80,12 +72,11 @@ const Feed = () => {
 
     setPosts(newArray[1].posts);
     return localStorage.setItem("@CodeLeap:userData", JSON.stringify(newArray));
-  }
+  };
 
-  function handleRemovePost(postId) {
+  const handleRemovePost = (postId) => {
     MySwal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this post!",
+      text: "Are you sure you want to delete this item?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -112,20 +103,6 @@ const Feed = () => {
       }
       return null;
     });
-  }
-
-  // Calculate how long the post was created
-  const calculatePostTime = useCallback((createdAt) => {
-    const parsedData =
-      createdAt.toString().charAt(0) === "2" ? parseISO(createdAt) : createdAt;
-    return formatDistance(parsedData, new Date(), {
-      addPrefix: false,
-    });
-  });
-
-  const openModal = (postId) => {
-    setActualPostId(postId);
-    setIsModalOpen((prevValue) => !prevValue);
   };
 
   const handleSaveEditedPost = () => {
@@ -147,7 +124,23 @@ const Feed = () => {
 
     setPosts(newArray[1].posts);
     setIsModalOpen(false);
+    setEditedTitle("");
+    setEditedContent("");
     return localStorage.setItem("@CodeLeap:userData", JSON.stringify(newArray));
+  };
+
+  // Calculate how long the post was created
+  const calculatePostTime = useCallback((createdAt) => {
+    const parsedData =
+      createdAt.toString().charAt(0) === "2" ? parseISO(createdAt) : createdAt;
+    return formatDistance(parsedData, new Date(), {
+      addPrefix: false,
+    });
+  });
+
+  const openModal = (postId) => {
+    setActualPostId(postId);
+    setIsModalOpen((prevValue) => !prevValue);
   };
 
   return (
@@ -185,7 +178,7 @@ const Feed = () => {
             <p>Por favor, faça login para postar algo</p>
           )}
 
-          {loadedPosts.map((post) => (
+          {loadedPosts.reverse().map((post) => (
             <Post
               key={post.id}
               postId={post.id}
