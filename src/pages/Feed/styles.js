@@ -4,6 +4,10 @@ import colors from "../../styles/variables";
 export const FeedContainer = styled.section`
   width: 90%;
   margin: 0 auto;
+
+  @media (max-width: 470px) {
+    width: 100%;
+  }
 `;
 
 export const FeedHeader = styled.header`

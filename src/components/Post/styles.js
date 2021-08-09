@@ -24,10 +24,6 @@ export const PostHeader = styled.header`
 export const IconsArea = styled.div`
   display: flex;
   gap: 30px;
-
-  /* & > img {
-    cursor: pointer;
-  } */
 `;
 
 export const ButtonImage = styled.button`
@@ -50,18 +46,32 @@ export const PostInfos = styled.div`
   justify-content: space-between;
   gap: 30px;
   cursor: default;
+
+  @media (max-width: 470px) {
+    gap: 10px;
+  }
 `;
 
 export const Author = styled.span`
   color: ${colors.darkGray};
   font-weight: 700;
   font-size: 18px;
+
+  @media (max-width: 470px) {
+    font-size: 14px;
+    text-align: left;
+  }
 `;
 
 export const PostTime = styled.span`
   color: ${colors.darkGray};
   font-weight: 400;
   font-size: 18px;
+
+  @media (max-width: 470px) {
+    font-size: 14px;
+    text-align: right;
+  }
 `;
 
 export const PostContent = styled.p`
