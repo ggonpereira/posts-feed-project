@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+<h1 align="center" style="padding-top: 20px">Posts Feed Project 🤗</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  <img alt="GitHub Language Count" src="https://img.shields.io/github/languages/count/ggonpereira/posts-feed-project" />
+  <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/ggonpereira/posts-feed-project" />
+  <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/ggonpereira/posts-feed-project" />
+  <img alt="Github Star" src="https://img.shields.io/github/stars/ggonpereira/posts-feed-project?style=social" />
+</p>
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+<h2>About 📝</h2>
 
-### `yarn start`
+<p align="center">A project created using ReactJS and Styled Components. Basically it's a application where you can input your username and start posting something. You can see other people posts and also remove/edit YOUR OWN posts! 👊🏼</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h2>Technologies 🚀</h2>
 
-### `yarn test`
+- [JavaScript](https://www.javascript.com/)
+- [React](https://pt-br.reactjs.org/)
+- [Styled-Components](https://styled-components.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `yarn build`
+<h2>Learning 📚</h2>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="center">It was a really nice project to develop. I could understand more how components works and how to structure my project better, breaking each part into a single component. Also I learned and used Styled Components and liked so much! 🙌🏼</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h2>Installation 👨‍💻</h2>
 
-### `yarn eject`
+### Before you can start, you have to install this tools in your machine:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- <b>[Git](https://git-scm.com)</b>
+- <b>[NodeJS](https://nodejs.org/)</b>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Then:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+- Clone the repository:
+$ git clone https://github.com/ggonpereira/posts-feed-project.git
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Then access the directory:
+$ cd posts-feed-project
 
-## Learn More
+- Install dependencies:
+$ yarn install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Then start the server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+$ yarn start
 
-### Code Splitting
+(if you don't have Yarn installed, please install here "https://yarnpkg.com/")
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- And finally, access: http://localhost:3000 (if the yarn hasn't accessed to you)
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> This project was developed with the ❤️ by **[@Gabriel G. Pereira](https://www.linkedin.com/in/gabriel-gonçalves-pereira/)**.<br>
+> If it was helpful for you or I could inspire you to create your own project, give me a ⭐! 😉
