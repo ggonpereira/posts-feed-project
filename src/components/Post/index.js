@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Title from "../Title";
 import {
   PostContainer,
@@ -14,7 +14,6 @@ import {
 
 import removeIcon from "../../assets/images/remove.svg";
 import editIcon from "../../assets/images/edit.svg";
-// import Modal from "../Modal";
 
 const Post = ({
   postId,
@@ -55,4 +54,4 @@ const Post = ({
   );
 };
 
-export default Post;
+export default memo(Post);

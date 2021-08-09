@@ -48,7 +48,9 @@ const Feed = () => {
 
   const onTitleChange = ({ target }) => setTitle(target.value);
 
-  const onEditedTitleChange = ({ target }) => setEditedTitle(target.value);
+  const onEditedTitleChange = ({ target }) => {
+    setEditedTitle(target.value);
+  };
 
   const onContentChange = ({ target }) => setContent(target.value);
 
@@ -67,7 +69,7 @@ const Feed = () => {
 
     const newArray = [
       { ...savedData[0] },
-      { posts: [...savedData[1].posts, newPost] },
+      { posts: [newPost, ...savedData[1].posts] },
     ];
 
     setPosts(newArray[1].posts);
@@ -178,7 +180,7 @@ const Feed = () => {
             <p>Por favor, faça login para postar algo</p>
           )}
 
-          {loadedPosts.reverse().map((post) => (
+          {loadedPosts.map((post) => (
             <Post
               key={post.id}
               postId={post.id}
