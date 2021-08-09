@@ -16,13 +16,15 @@ import FormInputTextarea from "../../components/FormInputTextarea";
 import CardBasis from "../../components/CardBasis";
 import Post from "../../components/Post";
 import Modal from "../../components/Modal";
-import { ModalButton } from "../../components/Modal/styles";
 
 const MySwal = withReactContent(Swal);
 
 const Feed = () => {
   const [title, setTitle] = useState("");
+  const [editedTitle, setEditedTitle] = useState("");
   const [content, setContent] = useState("");
+  const [editedContent, setEditedContent] = useState("");
+  const [actualPostId, setActualPostId] = useState("");
   const [noOfElements, setNoOfElements] = useState(6);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [posts, setPosts] = useState(() => {
@@ -48,8 +50,16 @@ const Feed = () => {
     setTitle(target.value);
   }
 
+  function onEditedTitleChange({ target }) {
+    setEditedTitle(target.value);
+  }
+
   function onContentChange({ target }) {
     setContent(target.value);
+  }
+
+  function onEditedContentChange({ target }) {
+    setEditedContent(target.value);
   }
 
   function handleSavePost() {
@@ -60,7 +70,6 @@ const Feed = () => {
       title,
       content,
       createdBy: savedData[0].name,
-      // authorId: savedData[0].id,
       createdAt: new Date(),
     };
 
@@ -114,16 +123,46 @@ const Feed = () => {
     });
   });
 
-  const openModal = () => {
+  const openModal = (postId) => {
+    setActualPostId(postId);
     setIsModalOpen((prevValue) => !prevValue);
+  };
+
+  const handleSaveEditedPost = () => {
+    const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
+    const foundIndex = savedData[1].posts.findIndex(
+      (post) => post.id === actualPostId,
+    );
+    const toChange = savedData[1].posts[foundIndex];
+
+    const editedArray = {
+      ...toChange,
+      title: editedTitle,
+      content: editedContent,
+    };
+
+    savedData[1].posts[foundIndex] = editedArray;
+
+    const newArray = [{ ...savedData[0] }, { posts: [...savedData[1].posts] }];
+
+    setPosts(newArray[1].posts);
+    setIsModalOpen(false);
+    return localStorage.setItem("@CodeLeap:userData", JSON.stringify(newArray));
   };
 
   return (
     <MainContainer>
-      <Modal showModal={isModalOpen} setShowModal={setIsModalOpen} />
+      <Modal
+        showModal={isModalOpen}
+        setShowModal={setIsModalOpen}
+        setEditedTitle={onEditedTitleChange}
+        setEditedContent={onEditedContentChange}
+        onButtonClick={handleSaveEditedPost}
+        editedTitle={editedTitle}
+        editedContent={editedContent}
+      />
       <FeedContainer>
         <FeedHeader>
-          <ModalButton onClick={openModal}>Olá</ModalButton>
           <Title color="#ffffff">CodeLeap Network</Title>
         </FeedHeader>
 
@@ -153,9 +192,9 @@ const Feed = () => {
               postTitle={post.title}
               postAuthor={post.createdBy}
               onRemoveClick={handleRemovePost}
-              // authorId={post.authorId}
               postTime={calculatePostTime(post.createdAt)}
               postContent={post.content}
+              modalButtonOnClick={openModal}
             />
           ))}
 

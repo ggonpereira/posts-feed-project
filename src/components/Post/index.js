@@ -14,6 +14,7 @@ import {
 
 import removeIcon from "../../assets/images/remove.svg";
 import editIcon from "../../assets/images/edit.svg";
+// import Modal from "../Modal";
 
 const Post = ({
   postId,
@@ -22,9 +23,9 @@ const Post = ({
   postTime,
   postContent,
   onRemoveClick,
+  modalButtonOnClick,
 }) => {
   const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
-  // const sameUser = savedData[0].id === authorId;
   const sameUser = savedData[0].name === postAuthor;
 
   return (
@@ -37,7 +38,9 @@ const Post = ({
               <img src={removeIcon} alt="Remove Post" />
             </ButtonImage>
 
-            <img src={editIcon} alt="Edit Post" />
+            <ButtonImage onClick={() => modalButtonOnClick(postId)}>
+              <img src={editIcon} alt="Edit Post" />
+            </ButtonImage>
           </IconsArea>
         )}
       </PostHeader>

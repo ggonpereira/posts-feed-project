@@ -10,7 +10,15 @@ import {
   AnimatedDiv,
 } from "./styles";
 
-const Modal = ({ showModal, setShowModal }) => {
+const Modal = ({
+  showModal,
+  setShowModal,
+  setEditedTitle,
+  setEditedContent,
+  onButtonClick,
+  editedTitle,
+  editedContent,
+}) => {
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -22,9 +30,7 @@ const Modal = ({ showModal, setShowModal }) => {
   });
 
   const closeModal = (e) => {
-    console.log("oei");
     if (modalRef.current === e.target) {
-      console.log("oi");
       setShowModal(false);
     }
   };
@@ -53,7 +59,13 @@ const Modal = ({ showModal, setShowModal }) => {
                   titleSize="h2"
                   title="Edit Item"
                 >
-                  <FormInputTextarea buttonText="Save" />
+                  <FormInputTextarea
+                    buttonText="Save"
+                    onChangeInputFunc={setEditedTitle}
+                    onChangeTextareaFunc={setEditedContent}
+                    onButtonClick={onButtonClick}
+                    disabled={editedTitle === "" || editedContent === ""}
+                  />
                 </CardBasis>
               </ModalContent>
             </ModalWrapper>
