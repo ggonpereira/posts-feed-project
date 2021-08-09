@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import Title from "../Title";
 import {
   PostContainer,
@@ -54,4 +54,4 @@ const Post = ({
   );
 };
 
-export default memo(Post);
+export default React.memo(Post);
