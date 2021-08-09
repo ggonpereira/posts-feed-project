@@ -19,7 +19,7 @@
 
 - [JavaScript](https://www.javascript.com/)
 - [React](https://pt-br.reactjs.org/)
-- [Styled-Components](https://styled-components.com/)
+- [Styled Components](https://styled-components.com/)
 
 ---
 
