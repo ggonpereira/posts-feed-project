@@ -16,7 +16,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(async () => {
-    const response = await api.get("/");
+    const response = await api.get("/?limit=500");
     const { data: allPosts } = response;
 
     setPosts(allPosts.results);

@@ -11,7 +11,7 @@ const PostsList = ({ posts, setPosts }) => {
   const [editedTitle, setEditedTitle] = useState("");
   const [editedContent, setEditedContent] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [noOfElements, setNoOfElements] = useState(6);
+  const [noOfElements, setNoOfElements] = useState(5);
   const loadedPosts = posts.slice(0, noOfElements);
 
   // Using the post functionalities hook
@@ -76,7 +76,7 @@ const PostsList = ({ posts, setPosts }) => {
       ))}
 
       {posts.length !== 0 && noOfElements < posts.length && (
-        <LoadMorePosts onClick={() => setNoOfElements(noOfElements + 6)}>
+        <LoadMorePosts onClick={() => setNoOfElements(noOfElements + 5)}>
           Carregar mais
         </LoadMorePosts>
       )}
