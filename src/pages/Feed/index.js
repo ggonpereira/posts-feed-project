@@ -13,6 +13,7 @@ import api from "../../api";
 const Feed = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
   useEffect(async () => {
@@ -20,6 +21,7 @@ const Feed = () => {
     const { data: allPosts } = response;
 
     setPosts(allPosts.results);
+    return setLoading(false);
   }, []);
 
   const userLoggedIn = JSON.parse(
@@ -62,7 +64,11 @@ const Feed = () => {
             <p>Por favor, faça login para postar algo</p>
           )}
 
-          <PostsList posts={posts} setPosts={setPosts} />
+          {!loading ? (
+            <PostsList posts={posts} setPosts={setPosts} />
+          ) : (
+            <p style={{ marginTop: "10px" }}>Carregando os posts...</p>
+          )}
         </FeedContent>
       </FeedContainer>
     </MainContainer>
