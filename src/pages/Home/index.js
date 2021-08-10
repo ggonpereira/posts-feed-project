@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as uuid from "uuid";
 import CardBasis from "../../components/CardBasis";
@@ -7,19 +7,7 @@ import HomeContainer from "./styles";
 
 const Home = () => {
   const [username, setUsername] = useState("");
-  const [savedPosts, setSavedPosts] = useState([]);
   const history = useHistory();
-
-  // Fetch existing posts in localStorage and save into state
-  useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
-
-    if (savedData) {
-      const parsedSavedPosts = savedData[1].posts;
-      return setSavedPosts(parsedSavedPosts);
-    }
-    return setSavedPosts([]);
-  }, []);
 
   function onUsernameChange({ target }) {
     setUsername(target.value);
@@ -28,10 +16,7 @@ const Home = () => {
   function handleSaveUsername() {
     localStorage.setItem(
       "@CodeLeap:userData",
-      JSON.stringify([
-        { id: uuid.v4(), name: username },
-        { posts: savedPosts },
-      ]),
+      JSON.stringify([{ id: uuid.v4(), name: username }]),
     );
 
     history.push("/feed");

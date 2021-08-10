@@ -25,6 +25,7 @@ const Post = ({
   modalButtonOnClick,
 }) => {
   const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
+  // Will return a boolean to future verifications
   const sameUser = savedData[0].name === postAuthor;
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainContainer from "../../components/MainContainer";
 import { FeedContainer, FeedContent, FeedHeader } from "./styles";
 
@@ -8,23 +8,19 @@ import CardBasis from "../../components/CardBasis";
 import PostsList from "../../components/PostsList";
 
 import usePostFuncs from "../../hooks/usePostFuncs";
+import api from "../../api";
 
 const Feed = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [posts, setPosts] = useState(() => {
-    // Instead of using a useEffect, this will automatically set the saved posts into the state
-    const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
+  const [posts, setPosts] = useState([]);
 
-    if (savedData) {
-      const savedPosts = savedData[1].posts;
+  useEffect(async () => {
+    const response = await api.get("/");
+    const { data: allPosts } = response;
 
-      if (savedPosts) return savedPosts;
-      return [];
-    }
-
-    return [];
-  });
+    setPosts(allPosts.results);
+  }, []);
 
   const userLoggedIn = JSON.parse(
     localStorage.getItem("@CodeLeap:userData"),

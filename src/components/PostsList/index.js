@@ -67,9 +67,9 @@ const PostsList = ({ posts, setPosts }) => {
           key={post.id}
           postId={post.id}
           postTitle={post.title}
-          postAuthor={post.createdBy}
+          postAuthor={post.username}
           onRemoveClick={handleRemovePost}
-          postTime={calculatePostTime(post.createdAt)}
+          postTime={calculatePostTime(post.created_datetime)}
           postContent={post.content}
           modalButtonOnClick={openModal}
         />
