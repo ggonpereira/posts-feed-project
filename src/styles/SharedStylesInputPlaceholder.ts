@@ -1,5 +1,5 @@
-import { css } from "styled-components";
-import colors from "./variables";
+import { css } from 'styled-components';
+import colors from './variables';
 
 const BaseStyle = css`
   width: 100%;

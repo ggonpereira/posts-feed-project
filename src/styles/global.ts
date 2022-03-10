@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${colors.gray};
 
     &,
-    input, textarea, button {
+    input, textArea, button {
       font-family: "Roboto", sans-serif;
     }
 

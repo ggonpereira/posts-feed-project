@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from "react";
-import MainContainer from "../../components/MainContainer";
-import { FeedContainer, FeedContent, FeedHeader } from "./styles";
+import React, { useEffect, useState } from 'react';
+import api from '../../api';
+import CardBasis from '../../components/CardBasis';
+import FormInputTextarea from '../../components/FormInputTextarea';
+import MainContainer from '../../components/MainContainer';
+import PostsList from '../../components/PostsList';
+import Title from '../../components/Title';
+import usePostFuncs from '../../hooks/usePostFuncs';
 
-import Title from "../../components/Title";
-import FormInputTextarea from "../../components/FormInputTextarea";
-import CardBasis from "../../components/CardBasis";
-import PostsList from "../../components/PostsList";
-
-import usePostFuncs from "../../hooks/usePostFuncs";
-import api from "../../api";
+import { FeedContainer, FeedContent, FeedHeader } from './styles';
 
 const Feed = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
+  const [userLoggedIn, setUserLoggedIn] = useState();
 
-  useEffect(async () => {
-    const response = await api.get("/?limit=500");
-    const { data: allPosts } = response;
+  useEffect(() => {
+    const fetchPosts = async (): Promise<void> => {
+      const response = await api.get('/?limit=500');
+      const { data: allPosts } = response;
 
-    setPosts(allPosts.results);
-    return setLoading(false);
+      setPosts(allPosts.results);
+      setLoading(false);
+    };
+
+    const userFromLocalStorage = localStorage.getItem('@CodeLeap:userData');
+    if (userFromLocalStorage)
+      setUserLoggedIn(JSON.parse(userFromLocalStorage)[0].id);
+
+    fetchPosts();
   }, []);
-
-  const userLoggedIn = JSON.parse(
-    localStorage.getItem("@CodeLeap:userData"),
-  )?.[0]?.id;
 
   // Using the post functionalities hook
   const { savePost } = usePostFuncs(setPosts);
@@ -57,7 +61,7 @@ const Feed = () => {
                 onChangeInputFunc={onTitleChange}
                 onChangeTextareaFunc={onContentChange}
                 onButtonClick={handleSavePost}
-                disabled={title === "" || content === ""}
+                disabled={title === '' || content === ''}
               />
             </CardBasis>
           ) : (
@@ -67,7 +71,7 @@ const Feed = () => {
           {!loading ? (
             <PostsList posts={posts} setPosts={setPosts} />
           ) : (
-            <p style={{ marginTop: "10px" }}>Carregando os posts...</p>
+            <p style={{ marginTop: '10px' }}>Carregando os posts...</p>
           )}
         </FeedContent>
       </FeedContainer>
