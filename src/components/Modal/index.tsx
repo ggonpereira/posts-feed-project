@@ -1,14 +1,33 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useSpring } from "react-spring";
-import CardBasis from "../CardBasis";
-import FormInputTextarea from "../FormInputTextarea";
+import React, {
+  useRef,
+  useEffect,
+  useCallback,
+  MouseEventHandler,
+} from 'react';
+import { useSpring } from 'react-spring';
+import CardBasis from '../CardBasis';
+import FormInputTextarea from '../FormInputTextarea';
 import {
   Background,
   ModalButton,
   ModalWrapper,
   ModalContent,
   AnimatedDiv,
-} from "./styles";
+} from './styles';
+import { SetStateProp } from '../../types/state';
+import { InputChangeEvent } from '../../types/form';
+
+interface Props {
+  showModal: boolean;
+  setShowModal: SetStateProp<boolean>;
+  setEditedTitle: SetStateProp<string>;
+  setEditedContent: SetStateProp<string>;
+  onButtonClick: () => void;
+  editedTitle: string;
+  editedContent: string;
+}
+
+type Children = JSX.Element | JSX.Element[];
 
 const Modal = ({
   showModal,
@@ -18,33 +37,33 @@ const Modal = ({
   onButtonClick,
   editedTitle,
   editedContent,
-}) => {
-  const modalRef = useRef();
+}: Props) => {
+  const modalRef = useRef<null>();
 
   const animation = useSpring({
     config: {
       duration: 350,
     },
     opacity: showModal ? 1 : 0,
-    transform: showModal ? "translateY(0%)" : "translateY(-100%)",
+    transform: showModal ? 'translateY(0%)' : 'translateY(-100%)',
   });
 
-  const closeModal = (e) => {
+  const closeModal = (e: any) => {
     if (modalRef.current === e.target) {
       setShowModal(false);
     }
   };
 
   const keyPress = useCallback(
-    (e) => {
-      if (e.key === "Escape" && showModal) setShowModal(false);
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showModal) setShowModal(false);
     },
     [setShowModal, showModal],
   );
 
   useEffect(() => {
-    document.addEventListener("keydown", keyPress);
-    return () => document.removeEventListener("keydown", keyPress);
+    document.addEventListener('keydown', keyPress);
+    return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
   return (
@@ -56,7 +75,7 @@ const Modal = ({
               <ModalContent className="modal-content">
                 <CardBasis
                   borderColor="#999999"
-                  titleSize="h2"
+                  fontSize="24px"
                   title="Edit Item"
                 >
                   <FormInputTextarea
@@ -64,7 +83,7 @@ const Modal = ({
                     onChangeInputFunc={setEditedTitle}
                     onChangeTextareaFunc={setEditedContent}
                     onButtonClick={onButtonClick}
-                    disabled={editedTitle === "" || editedContent === ""}
+                    disabled={editedTitle === '' || editedContent === ''}
                   />
                 </CardBasis>
               </ModalContent>
@@ -76,7 +95,7 @@ const Modal = ({
   );
 };
 
-export const ButtonModal = ({ children }) => (
+export const ButtonModal = ({ children }: { children: Children }) => (
   <ModalButton>{children}</ModalButton>
 );
 

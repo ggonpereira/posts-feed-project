@@ -1,5 +1,5 @@
-import React from "react";
-import Title from "../Title";
+import React, { useEffect, useState } from 'react';
+import Title from '../Title';
 import {
   PostContainer,
   PostHeader,
@@ -10,10 +10,22 @@ import {
   Author,
   PostTime,
   PostContent,
-} from "./styles";
+} from './styles';
 
-import removeIcon from "../../assets/images/remove.svg";
-import editIcon from "../../assets/images/edit.svg";
+import { User } from '../../types/user';
+
+import removeIcon from '../../assets/images/remove.svg';
+import editIcon from '../../assets/images/edit.svg';
+
+interface Props {
+  postId: string;
+  postTitle: string;
+  postAuthor: string;
+  postTime: string;
+  postContent: string;
+  onRemoveClick: (id: string) => void;
+  modalButtonOnClick: (id: string) => void;
+}
 
 const Post = ({
   postId,
@@ -23,10 +35,16 @@ const Post = ({
   postContent,
   onRemoveClick,
   modalButtonOnClick,
-}) => {
-  const savedData = JSON.parse(localStorage.getItem("@CodeLeap:userData"));
-  // Will return a boolean to future verifications
-  const sameUser = savedData[0].name === postAuthor;
+}: Props) => {
+  const [sameUser, setSameUser] = useState<boolean>(false);
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem('@PostsFeed:userData');
+    if (storedValue) {
+      const savedData: User[] = JSON.parse(storedValue);
+      setSameUser(postAuthor === savedData[0].name);
+    }
+  }, []);
 
   return (
     <PostContainer>

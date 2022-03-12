@@ -1,6 +1,6 @@
-import { animated } from "react-spring";
-import styled from "styled-components";
-import colors from "../../styles/variables";
+import { animated } from 'react-spring';
+import styled from 'styled-components';
+import colors from '../../styles/variables';
 
 export const ModalButton = styled.button`
   height: 40px;
@@ -25,7 +25,7 @@ export const Background = styled.div`
   align-items: center;
 `;
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div<{ showModal: boolean }>`
   max-width: 800px;
   max-height: 500px;
   width: 100%;
@@ -46,7 +46,9 @@ export const ModalContent = styled.div`
   color: #141414;
 `;
 
-export const AnimatedDiv = styled(animated.div)`
+export const AnimatedDiv = styled(animated.div)<{
+  ref: any;
+}>`
   width: 100%;
   height: 100%;
   display: flex;

@@ -6,15 +6,18 @@ import MainContainer from '../../components/MainContainer';
 import PostsList from '../../components/PostsList';
 import Title from '../../components/Title';
 import usePostFuncs from '../../hooks/usePostFuncs';
+import { InputChangeEvent } from '../../types/form';
+import { Posts } from '../../types/posts';
+import { User } from '../../types/user';
 
 import { FeedContainer, FeedContent, FeedHeader } from './styles';
 
 const Feed = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
-  const [userLoggedIn, setUserLoggedIn] = useState();
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [posts, setPosts] = useState<Posts[]>([]);
+  const [userLoggedIn, setUserLoggedIn] = useState<User>({ id: '', name: '' });
 
   useEffect(() => {
     const fetchPosts = async (): Promise<void> => {
@@ -25,7 +28,7 @@ const Feed = () => {
       setLoading(false);
     };
 
-    const userFromLocalStorage = localStorage.getItem('@CodeLeap:userData');
+    const userFromLocalStorage = localStorage.getItem('@PostsFeed:userData');
     if (userFromLocalStorage)
       setUserLoggedIn(JSON.parse(userFromLocalStorage)[0].id);
 
@@ -35,8 +38,10 @@ const Feed = () => {
   // Using the post functionalities hook
   const { savePost } = usePostFuncs(setPosts);
 
-  const onTitleChange = ({ target }) => setTitle(target.value);
-  const onContentChange = ({ target }) => setContent(target.value);
+  const onTitleChange = ({ target }: InputChangeEvent) =>
+    setTitle(target.value);
+  const onContentChange = ({ target }: InputChangeEvent) =>
+    setContent(target.value);
 
   const handleSavePost = () => {
     savePost(title, content);
@@ -46,14 +51,14 @@ const Feed = () => {
     <MainContainer>
       <FeedContainer>
         <FeedHeader>
-          <Title color="#ffffff">CodeLeap Network</Title>
+          <Title color="#ffffff">PostsFeed Network</Title>
         </FeedHeader>
 
         <FeedContent>
           {userLoggedIn ? (
             <CardBasis
               borderColor="#999999"
-              titleSize="h2"
+              fontSize="24px"
               title="What's on your mind?"
             >
               <FormInputTextarea

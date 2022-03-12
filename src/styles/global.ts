@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import colors from "./variables";
+import { createGlobalStyle } from 'styled-components';
+import colors from './variables';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -15,7 +15,10 @@ const GlobalStyle = createGlobalStyle`
     input, textArea, button {
       font-family: "Roboto", sans-serif;
     }
+  }
 
+  iframe {
+    display: none;
   }
 `;
 
